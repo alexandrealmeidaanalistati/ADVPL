@@ -1,0 +1,182 @@
+#include 'tlpp-core.th'
+#include "protheus.ch"
+#include "totvs.ch"
+
+/*
++========================================================================+
+| Fonte: OOtlpp | Desenvolvido por: Alexandre Almeida | Data: 01/10/2024 |
++========================================================================+
+| Utilizando os conceitos de orientação a objetos em ADVPL, com as       |
+| funcionalidades:  Objetos                                            |
+|                   Herança                                            |
+|                   Atributos                                          |
+|                   Métodos                                            |
+|                   Classes                                            |
+|                   Abstração                                          |
+|                   Generalização                                      |
+|                   Encapsulamento                                     |
+|                   Interface                                          |
+|                   Polimorfismo                                       |
++========================================================================+
+*/
+//Interface
+    Interface InterfacePessoa                                                                           // Interface
+            Public Method Create()              
+    EndInterface                
+
+    Interface InterfaceAluno                                                                            // Interface
+            Public Method setInd()      
+    EndInterface        
+//Classe Pessoa_tlpp     
+    Class Pessoa_tlpp implements InterfacePessoa                                                        // Classes e  Interface e  Abstração e  Generalização
+
+            Private cNomeEscola as character                                                            // Atributos 
+            Private cNome as character                                                                  // Atributos 
+            Private nIdade as numeric                                                                   // Atributos 
+            Private dDataNascimento as date                                                             // Atributos 
+
+            Public Method Create(cNome as character, dDataNascimento as date)                           // Métodos 
+            Private Method CalcularIdade(dDataNascimento as date)                                       // Métodos  Encapsulamento
+            Public Method SetName(cNome as character)                                                   // Métodos 
+            Public Method SetDataNascimento(dDataNascimento as date)                                    // Métodos 
+            Public Method SetIdade(nIdade as numeric)                                                   // Métodos 
+            Public Method GetName() as character                                                        // Métodos  
+            Public Method GetIdade() as numeric                                                         // Métodos 
+            Public Method GetNomeEscola() as character                                                  // Métodos  
+            Static Method GetHorasDeTrabalhoSemanal() as numeric                                        // Métodos Static
+
+    EndClass
+
+    Method Create(cNome as character, dDataNascimento as date) class Pessoa_tlpp
+        Self:SetName(cNome)
+        Self:SetDataNascimento(dDataNascimento)
+
+        Self:CalcularIdade(dDataNascimento)
+    Return Self
+
+    Method SetName(cName as character) class Pessoa_tlpp
+        Self:cName:= cName
+    Return
+
+    Method SetDataNascimento(dDataNascimento as date) class Pessoa_tlpp
+        Self:dDataNascimento := dDataNascimento
+    Return
+
+    Method CalcularIdade(dDataNascimento as date) class Pessoa_tlpp
+        Self:SetIdade(date() - dNascimento)
+    Return
+
+    Method SetIdade(nIdade as numeric) class Pessoa_tlpp
+        Self:nIdade:=nIdade
+    Return
+
+    Method GetName() as character class Pessoa_tlpp
+    Return Self:cNome
+
+    Method GetIdade() as numeric class Pessoa_tlpp
+    return Self:nIdade
+
+    Method GetNomeEscola() as character class Pessoa_tlpp
+    Return Self:cNomeEscola
+
+    Method GetHorasDeTrabalhoSemanal() as numeric class Pessoa_tlpp
+    Return 48
+
+//Classe: Pessoa fim
+
+//Classe: Aluno    
+    Class Aluno_tlpp from Pessoa implements InterfaceAluno                                              // Herança e  Interface e  Classes
+
+            Private nId as numeric                                                                      // Atributos 
+            Public oCurso as object                                                                     // Atributos 
+            /*                                   Tipos de Dados TLPP                
+            Private nNum2 := 3 as numeric                                                               // Atributos 
+            Private iInt2 := 7 as integer                                                               // Atributos 
+            Private eDbl2 := 32.79 as double                                                            // Atributos 
+            Private fDec2 := DEC_CREATE( 7233.759119, 21, 20 ) as Decimal                               // Atributos 
+            Private cStr2 := "TotvsTec" as character                                                    // Atributos 
+            Private lBol2 := .T. as logical                                                             // Atributos 
+            Private dDte2 := CToD("08/29/2021") as date                                                 // Atributos 
+            Private aArr2 := {1, 2, 3} as array                                                         // Atributos 
+            Private oObj2 := MyClass():New() as object                                                  // Atributos 
+            Private jJsn2 := JsonObject():New() as Json                                                 // Atributos 
+            Private bBlk2 := {|r,l|r*l} as CodeBlock                                                    // Atributos 
+            Private xVar2 := 4 as variant                                                               // Atributos 
+            Private xVar3 := "Texto" as variant                                                         // Atributos 
+            Private Method NomeSobrenome() as variadic                                                  // Atributos 
+            
+                Se não for declarado nenhum dos tipos, a variável será tratada como "variant"
+                If (nNum == Nil) mudar para If (nNum == Variant)
+            */
+            Public Method Create(cNome as character, dDataNascimento as date, nId as numeric) as object // Métodos
+            Public Method SetInd(nId as numeric)                                                        // Métodos  
+            Public Method SetAprovacaoFinal(lAprovado as logical)          
+    EndClass
+
+    Method Create(cNome as character, dDataNascimento as date, nId as numeric) as object class Aluno_tlpp
+        _Super:Create(cNome, dDataNascimento)
+        Self:SetInd(nId)
+        Self:oCurso := Curso():New(nId)
+    Return Self
+
+    Method SetInd(nId as numeric) class Aluno_tlpp
+        Self:nId := nId
+    Return
+
+    Method SetAprovacaoFinal(lAprovado as logical) class Aluno_tlpp
+        Self:oCurso:SetAprovar(lAprovado)
+    Return
+//Classe: Aluno fim
+
+//Classe: Curso
+    Class Curso 
+
+            Private nId as numeric
+            Private lAprovado as logical
+
+            Public Method New(nId as numeric) as object
+            Private Method SetInd(nId as numeric)
+            Public Method SetAprovar(lAprovado as logical)
+            Public Method GetAprovacao() as logical
+
+    EndClass
+
+    Method New(nId as numeric) as object class Curso
+        Self:SetInd(nId)
+        Self:SetAprovar(.f.)                     
+    Return
+
+    Method setInd(nId as numeric) class Curso
+        Self:nId := nId
+    Return    
+
+    Method SetAprovar(lAprovado as logical) class Curso
+        Self:lAprovado:=lAprovado
+    Return
+
+    Method GetAprovacao() as logical class Curso
+    Return Self:lAprovado
+//Classe: Curso fim
+
+*----------------------*
+ user Function ootlpp()
+*----------------------*
+    u_CadPes()
+ return Nil
+
+*----------------------*
+ user Function CadPes()
+*----------------------*
+    Local cNome      :="Alexandre"
+    Local dNascimento:=CTOD("11/29/1983")
+    Local uAux       :=variant
+
+    oAluno:=Aluno_tlpp():Create(cNome,dNascimento,1)                                                         // Objetos  
+    uAux:=oAluno:GetName()
+    uAux:=oAluno:GetIdade()
+    uAux:=oAluno:GetIdade()
+    uAux:=oAluno:oCurso:GetAprovacao()
+    uAux:=oAluno:SetAprovacaoFinal(.t.)
+    uAux:=oAluno:oCurso:GetAprovacao()
+
+ Return Nil
