@@ -1,4 +1,7 @@
 #include "protheus.ch"
+#include "totvs.ch"
+
+
 /*
 +====================================================================+
 | Fonte: OO | Desenvolvido por: Alexandre Almeida | Data: 01/10/2024 |
@@ -29,7 +32,9 @@
 |                   Polimorfismo (demonstrado no fonte oo.tlpp)    |
 +====================================================================+
 */
+
 //Classe: Pessoa
+
     CLASS Pessoa                                                        // Classes e  Abstração e  Generalização
         
         CLASSDATA cEscola AS character INIT 'Tutores'                   // Atributos           
@@ -39,20 +44,21 @@
         EXPORT DATA dNascimento    // ou DATA dNascimento               // Atributos  
         // deu errado   HIDDEN DATA nTamanhoEscola 
 
-        METHOD Create() CONSTRUCTOR                                     // Métodos 
-        METHOD SetName()                                                // Métodos 
-        METHOD SetIdade()                                               // Métodos 
-        METHOD GetName()                                                // Métodos 
-        METHOD GetIdade()                                               // Métodos 
-        METHOD CalcIdade()                                              // Métodos 
-        METHOD GetEscola()                                              // Métodos 
-        METHOD GetHoras()                                               // Métodos  Encapsulamento
+        PUBLIC METHOD Create() CONSTRUCTOR                              // Métodos 
+        PUBLIC METHOD SetName()                                         // Métodos 
+        PUBLIC METHOD SetNascimento()                                   // Métodos 
+        PUBLIC METHOD SetIdade()                                        // Métodos 
+        PUBLIC METHOD GetName()                                         // Métodos 
+        PUBLIC METHOD GetIdade()                                        // Métodos 
+        PUBLIC METHOD GetEscola()                                       // Métodos 
+        PUBLIC METHOD GetHoras()                                        // Métodos 
+        PRIVATE METHOD CalcIdade()                                      // Métodos  Encapsulamento
 
     ENDCLASS
 
     METHOD Create(cNome, dNascimento) CLASS Pessoa
-        SELF:SetNome(cNome)
-        SELF:Setidade(dNascimento)
+        SELF:SetName(cNome)
+        SELF:SetNascimento(dNascimento)
 
         SELF:CalcIdade(dNascimento)
 
@@ -68,6 +74,10 @@
         ::cNome := cNome
     RETURN
 
+    METHOD SetNascimento(nNascimento) CLASS Pessoa
+        ::nNascimento := nNascimento
+    RETURN
+    
     METHOD SetIdade(nIdade) CLASS Pessoa
         ::nIdade := nIdade
     RETURN
@@ -91,12 +101,12 @@
         EXPORT DATA nId                                                 // Atributos  
         EXPORT DATA aCursos                                             // Atributos  
 
-        METHOD Create() CONSTRUCTOR                                     // Métodos
-        METHOD Inscrever()                                              // Métodos
-        METHOD Avaliar()                                                // Métodos
-        METHOD getNota()                                                // Métodos
-        METHOD getStatus()                                              // Métodos
-        METHOD setnId()                                                 // Métodos
+        PUBLIC METHOD Create() CONSTRUCTOR                              // Métodos
+        PUBLIC METHOD setnId()                                          // Métodos
+        PUBLIC METHOD Inscrever()                                       // Métodos
+        PUBLIC METHOD Avaliar()                                         // Métodos
+        PUBLIC METHOD getNota()                                         // Métodos
+        PUBLIC METHOD getStatus()                                       // Métodos
     ENDCLASS
 
     METHOD Create(cNome,dNascimento,nId) CLASS Aluno                    
@@ -109,7 +119,6 @@
         ::nId:=nId
     RETURN
 //Classe: Aluno fim
-
 
 *------------------*
  User Function oo()
@@ -124,7 +133,7 @@
     Local dNascimento:=CTOD("11/29/1983")
     Local uAux       :=NIL
 
-    oAluno:=Aluno():Create(cNome,dNascimento,1)                         //// Objetos  
+    oAluno:=Aluno():Create(cNome,dNascimento,1)                         // Objetos  
     uAux:=oAluno:GetName()
-    uAux:=oAluno:nHorasTrabalho
+
  Return
