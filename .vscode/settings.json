@@ -1,4 +1,4 @@
 {
     "totvsLanguageServer.welcomePage": false,
-    "totvsLanguageServer.editor.linter.includes": "C:\\FONTES\\PROTHEUS\\include;C:\\FONTES\\ALEXANDRE\\ADVPL\\include_tlpp"
+    "totvsLanguageServer.editor.linter.includes": "C:\\FONTES\\PROTHEUS\\include;C:\\FONTES\\ALEXANDRE\\TLPP\\include_tlpp"
 }
