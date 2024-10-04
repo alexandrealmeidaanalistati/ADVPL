@@ -1,3 +1,35 @@
 {
-	"version": "0.2.0"
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "totvs_language_debug",
+			"request": "launch",
+			"name": "Smart Client Debug",
+			"program": "${command:AskForProgramName}",
+			"smartclientBin": "C:/Smartclient/smartclient.exe",
+			"cwb": "${workspaceFolder}",
+			"isMultiSession": true,
+			"enableTableSync": true,
+			"extendFeatures": {
+				"charDetails": false
+			}
+		}
+	],
+	"lastPrograms": [
+		{
+			"label": "U_sampleIsProbat"
+		},
+		{
+			"label": "u_oo"
+		},
+		{
+			"label": "U_ootlpp"
+		},
+		{
+			"args": [],
+			"label": "U_ootlpp"
+		}
+	],
+	"lastProgramExecuted": "U_ootlpp",
+	"lastProgramArguments": []
 }
