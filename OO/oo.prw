@@ -74,8 +74,8 @@
         ::cNome := cNome
     RETURN
 
-    METHOD SetNascimento(nNascimento) CLASS Pessoa
-        ::nNascimento := nNascimento
+    METHOD SetNascimento(dNascimento) CLASS Pessoa
+        ::dNascimento := dNascimento
     RETURN
     
     METHOD SetIdade(nIdade) CLASS Pessoa
